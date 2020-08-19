@@ -16,13 +16,13 @@ class CreateFavoritesTable extends Migration
         Schema::create('favorites', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('title'); 
-            $table->string('author'); 
-            $table->string('content'); 
-            $table->string('description'); 
-            $table->string('publishedAt'); 
-            $table->string('url'); 
-            $table->string('urlToImage');
+            $table->string('title')->nullable($value = true); 
+            $table->string('author')->nullable($value = true); 
+            $table->string('content', 500)->nullable($value = true); 
+            $table->string('description', 500)->nullable($value = true); 
+            $table->string('publishedAt', 500)->nullable($value = true); 
+            $table->string('url', 500)->nullable($value = true); 
+            $table->string('urlToImage', 500)->nullable($value = true);
             $table->integer('user_id')->unsigned();
 
             $table->foreign('user_id')->references('id')->on('users');

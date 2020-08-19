@@ -264,3 +264,31 @@ body {
     margin-left: 5%;
     width: 90%;
 }
+
+.fav{
+    background-color: white;
+    padding: 3rem;
+    padding-bottom: 0rem;
+    margin-top: 0;
+}
+
+.fav img{
+    margin-bottom: 2rem;
+    margin-left: 2rem;
+}
+
+#sep{
+    width: 60%;
+}
+
+.load{
+    margin: 0 auto;
+    width: 100%;
+    align-items: center;
+}
+
+.icon{
+    color: gray;
+    font-size: 50px;
+    float: center;
+}

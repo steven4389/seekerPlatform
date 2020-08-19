@@ -8,7 +8,7 @@ import {getEconomicSectorsByUserId} from '../services/econimicSectors';
 import {getInterestsByUserId} from '../services/interestsFunctions';
 import Navbar from '../components/Navbar';
 import {saveFavoritesByUserId} from '../services/favoritesFunctions';
-import { ToastContainer, toast } from 'react-toastify';
+import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 class Seeker extends Component {
@@ -41,17 +41,13 @@ class Seeker extends Component {
         } else {
             const token = localStorage.getItem("usertoken");
             const decoded = jwt_decode(token);
-            let arrayData =[]
+            let arrayData = []
 
             await getEconomicSectorsByUserId(decoded.sub).then(res => {
 
                 const economicSectorName = res.data.map(x => x.economicSectorName)
-                
-                
+
                 arrayData = arrayData.concat(economicSectorName);
-                //this.setState({
-                //    WikiSearchTerms: response[Math.floor(Math.random() * (response.length - 0)) + 0]
-                //})
 
             });
 
@@ -97,7 +93,7 @@ class Seeker extends Component {
 
         getNews(this.state.WikiSearchTerms).then(res => {
             if(res) {
-
+                console.log("getNews", res)
                 this.setState({
                     news: res.data.articles
                 });
@@ -108,8 +104,14 @@ class Seeker extends Component {
         fetch(url)
             .then(
                 function (response) {
+                    let loadingEcoSec = document.getElementById('loading');
+                    if(loadingEcoSec !== null){
+                        loadingEcoSec.remove();
+                    }
+                    
                     return response.json();
                 }
+                
             )
             .then(
                 function (response) {
@@ -161,13 +163,13 @@ class Seeker extends Component {
         });
     }
 
-    favorites(n){
+    favorites(n) {
         console.log("----------------")
         console.log(n)
         const token = localStorage.getItem("usertoken");
         const decoded = jwt_decode(token);
-        
-        const data={
+
+        const data = {
             "title": n.title,
             "author": n.author,
             "content": n.content,
@@ -177,11 +179,11 @@ class Seeker extends Component {
             "urlToImage": n.urlToImage,
             "user_id": decoded.sub
         }
-        saveFavoritesByUserId(decoded.sub, data).then(res=>{
-                console.log("saveFavoritesByUserId" ,res)
-                toast.success("añadido a favoritos", 'success')
+        saveFavoritesByUserId(decoded.sub, data).then(res => {
+            console.log("saveFavoritesByUserId", res)
+            toast.success("añadido a favoritos", 'success')
         });
-        
+
     }
 
     async senDataYoutubeApi(search) {
@@ -208,29 +210,51 @@ class Seeker extends Component {
     }
 
     renderedNews() {
-        const element = this.state.news.map((n) => {
-            let index = n.content.indexOf('[');
-            index = n.content.substr(index, n.content.length);
-            n.content = n.content.replace(index, '')
 
-            return (<div className=' video-item'>
-                <h6><strong>{n.title}</strong></h6>
-                <div className="bodyNew">
-                    <p>
-                        {n.content} <span type='button' className="button"><a target="_blank" href={n.url}>Leer más</a></span>
-                    </p>
-                    <img className="image" src={n.urlToImage} alt='' />
-                </div>
+        if(this.state.news.length !== 0){
+            const element = this.state.news.map((n) => {
 
-                <div className="divisor">
-                    <span value={n} onClick={this.favorites.bind(this, n)}><i  className="far fa-thumbs-up fa-flip-horizontal likeIcon"></i></span>
-                </div>
-            </div>);
-        });
-        ReactDOM.render(element, document.getElementById('news'));
-        this.setState({
-            news: []
-        });
+                if(n.content !== null) {
+                    if(n.content.includes('[')) {
+                        let index = n.content.indexOf('[');
+                        index = n.content.substr(index, n.content.length);
+                        n.content = n.content.replace(index, '')
+                    }
+                }
+    
+                return (<div className=' video-item'>
+                    <h6><strong>{n.title}</strong></h6>
+                    <div className="bodyNew">
+                        <p>
+                            {n.content} <span type='button' className="button"><a target="_blank" href={n.url}>Leer más</a></span>
+                        </p>
+                        <img className="image" src={n.urlToImage} alt='' />
+                    </div>
+    
+                    <div className="divisor">
+                        <span value={n} onClick={this.favorites.bind(this, n)}><i className="far fa-thumbs-up fa-flip-horizontal likeIcon"></i></span>
+                    </div>
+                </div>);
+            });
+            let loadingEcoSec = document.getElementById('loadingEcoSec');
+            if(loadingEcoSec !== null){
+                loadingEcoSec.remove();
+            }
+            
+            ReactDOM.render(element, document.getElementById('news'));
+            this.setState({
+                news: []
+            });
+        }else{
+            let loadingEcoSec = document.getElementById('loadingEcoSec');
+            if(loadingEcoSec !== null){
+                loadingEcoSec.remove();
+            }
+            
+            const element = <span>No se encontaron noticias acerca de este tema</span>
+            ReactDOM.render(element, document.getElementById('news'));
+        }
+        
     }
 
 
@@ -261,16 +285,20 @@ class Seeker extends Component {
                         </div>
                         <div id="mainContainer" className="row">
                             <div className="col-12 col-md-8 col-lg-8 col-xl-8">
-                                <div id="news"></div>
+                            
+                                <div id="news"><div className="load" id="loadingEcoSec"><i className="fas fa-spinner fa-spin icon"></i></div></div>
                             </div>
                             <div className="col-12 col-md-4 col-lg-4 col-xl-4 articles">
                                 <div id="videos"></div>
                                 <div id="wiki">
+                                
                                     <div id="iconAndTitle"><i className="fas fa-newspaper"></i>
-                                    <h6>Artículos</h6></div>
-                                    {wikiSearchResults}
+                                        <h6>Artículos</h6></div>
+                                        
+                                    {wikiSearchResults.length !== 0? wikiSearchResults: <span><br/>No se encontraron articulos relacionados</span>}
+                                    
                                 </div>
-
+                                <div className="load" id="loading"><i className="fas fa-spinner fa-spin icon"></i></div>
                             </div>
                         </div>
                     </div>

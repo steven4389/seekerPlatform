@@ -27,6 +27,7 @@ class Profile extends Component {
 
         await getProfile().then(res => {
 
+            localStorage.setItem('username', res.user.name);
             this.setState({
                 id: res.user.id,
                 name: res.user.name,
@@ -63,7 +64,11 @@ class Profile extends Component {
             })
 
         });
-
+       
+        
+        let loadingEcoSec = document.getElementById('loadingEcoSec');
+        loadingEcoSec.remove();
+        this.renderEconomicSectorsContainer();
         await getInterests().then(response => {
 
             const data = response.map(x => {
@@ -79,8 +84,11 @@ class Profile extends Component {
             })
 
         });
+        
+        let loadingInterests = document.getElementById('loadingInterests');
+        loadingInterests.remove();
         this.renderInterestsContainer();
-        this.renderEconomicSectorsContainer();
+        
     }
 
     onChangeValue = (e) => {
@@ -167,13 +175,17 @@ class Profile extends Component {
                 </div>
                 <div className="profileContainer">
                     <h5>Intereses</h5>
+                        <div className="load" id="loadingInterests"><i class="fas fa-spinner fa-spin icon"></i></div>
                     <div id="interestsContainer">
-
+                    
                     </div>
                 </div>
                 <div className="profileContainer">
                     <h5>Sectores Económicos</h5>
-                    <div id="economicSectorsContainer"></div>
+                        <div className="load" id="loadingEcoSec"><i className="fas fa-spinner fa-spin icon"></i></div>
+                    <div id="economicSectorsContainer">
+                    
+                    </div>
                 </div>
                 <br />
                 <button onClick={this.updateProfile} className="btn btn-block btn-success" type='button'>Enviar</button>

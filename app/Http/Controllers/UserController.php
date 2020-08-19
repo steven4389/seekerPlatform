@@ -23,7 +23,7 @@ class UserController extends Controller
         $validator = Validator::make($request->json()->all() , [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6', 
+            'password' => 'required|string|min:2', 
             'sexo' => 'required|string|min:6',
             'dateBirth' => 'required',
             'cellphone' => 'required|string|min:6', 

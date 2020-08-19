@@ -7,6 +7,7 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Profile from './components/Profile'
 import Seeker from './components/Seeker'
+import Favorites from './components/favorites'
 import {AppContextProvider} from './context/appContext'
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
                         <Route exact path="/login" component={Login} />
                         <Route exact path="/profile" component={Profile} />
                         <Route exact path="/seeker" component={Seeker} />
+                        <Route exact path="/favorites" component={Favorites} />
 
                     </div>
                 </Router>

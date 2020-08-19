@@ -1,0 +1,52 @@
+//INSERTS interests table
+insert into interests (interestName) values('Innovacion');
+insert into interests (interestName) values('Desarrollo de productos');
+insert into interests (interestName) values('Vigilancia tecnológica');
+insert into interests (interestName) values('Prototipado');
+insert into interests (interestName) values('Desarrollo de productos/servicios');
+insert into interests (interestName) values('Redes de contactos');
+insert into interests (interestName) values('Patentes ');
+insert into interests (interestName) values('Gestión de proyectos');
+insert into interests (interestName) values('Comercialización de productos yservicios');
+insert into interests (interestName) values('Big data');
+insert into interests (interestName) values('Analítica');
+insert into interests (interestName) values('Software');
+insert into interests (interestName) values('Industria 4.0');
+insert into interests (interestName) values('Trasformación digital');
+insert into interests (interestName) values('Megatendencias ');
+insert into interests (interestName) values('Economía ysociedad');
+insert into interests (interestName) values('Demografia');
+
+
+//INSERTS economic_sectors table
+insert into economic_sectors (economicSectorName) values('Actuarial y seguros');
+insert into economic_sectors (economicSectorName) values('Administración empresarial');
+insert into economic_sectors (economicSectorName) values('Agricultura');
+insert into economic_sectors (economicSectorName) values('Agroindustria');
+insert into economic_sectors (economicSectorName) values('Alimentos y bebidas');
+insert into economic_sectors (economicSectorName) values('Ambiente y desarrollo sostenible');
+insert into economic_sectors (economicSectorName) values('Automotriz');
+insert into economic_sectors (economicSectorName) values('Comercio');
+insert into economic_sectors (economicSectorName) values('Construcción');
+insert into economic_sectors (economicSectorName) values('Consultoría');
+insert into economic_sectors (economicSectorName) values('Cosméticos y aseo');
+insert into economic_sectors (economicSectorName) values('Dispositivos médicos');
+insert into economic_sectors (economicSectorName) values('Economía naranja');
+insert into economic_sectors (economicSectorName) values('Trasformación digital');
+insert into economic_sectors (economicSectorName) values('Educación');
+insert into economic_sectors (economicSectorName) values('Electrodomésticos');
+insert into economic_sectors (economicSectorName) values('Empaques');
+insert into economic_sectors (economicSectorName) values('Gobierno');
+insert into economic_sectors (economicSectorName) values('Hotelería y turismo');
+insert into economic_sectors (economicSectorName) values('Manufactura');
+insert into economic_sectors (economicSectorName) values('Metalmecánica');
+insert into economic_sectors (economicSectorName) values('Minero y energético');
+insert into economic_sectors (economicSectorName) values('Posconsumo');
+insert into economic_sectors (economicSectorName) values('Salud');
+insert into economic_sectors (economicSectorName) values('Seguridad y salud en el trabajo');
+insert into economic_sectors (economicSectorName) values('Servicios financieros');
+insert into economic_sectors (economicSectorName) values('Sostenibilidad');
+insert into economic_sectors (economicSectorName) values('Tecnologías de información y comunicaciones');
+insert into economic_sectors (economicSectorName) values('Textil');
+insert into economic_sectors (economicSectorName) values('Transporte');
+insert into economic_sectors (economicSectorName) values('Transversal (Ciencia, tecnología, negocios, etc.)');

@@ -29,6 +29,7 @@ class Login extends Component {
         login(user).then(res => {
            console.log("loginres", res);
             if(res) {
+                console.log("loginRes", res)
                 this.props.history.push(`/profile`)
             }else{
                 swal("","usuario o contraseña invalidos", "error");

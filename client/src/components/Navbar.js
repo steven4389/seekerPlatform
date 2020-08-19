@@ -28,7 +28,7 @@ class Navbar extends Component {
       <ul className="navbar-nav">
         <li className="nav-item">
           <Link to="/profile" className="nav-link">
-            User
+            {localStorage.getItem('username')}
           </Link>
         </li>
         <li className="nav-item">
@@ -46,11 +46,16 @@ class Navbar extends Component {
               Seeker
             </Link>
           </li>
+          <li className="nav-item">
+            <Link to="/favorites" className="nav-link">
+              Favorites
+            </Link>
+          </li>
         </ul>
       )
 
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark rounded">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <button
           className="navbar-toggler"
           type="button"
@@ -70,11 +75,11 @@ class Navbar extends Component {
           <ul className="navbar-nav">
             <li className="nav-item">
               <Link to="/" className="nav-link">
-                Home
+                SEEKER PLATFORM
               </Link>
             </li>
           </ul>
-          
+          <div id="sep"></div>
           {localStorage.usertoken ? seekerLink : <div></div>}
           {localStorage.usertoken ? userLink : loginRegLink}
           
